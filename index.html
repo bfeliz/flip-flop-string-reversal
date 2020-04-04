@@ -34,8 +34,8 @@
             grid-area: button;
         }
 
-        footer {
-            grid-area: footer;
+        #errors {
+            grid-area: toast;
         }
 
         .sidebar-r {
@@ -51,7 +51,7 @@
                 "sidebar-l output-label sidebar-r"
                 "sidebar-l output sidebar-r"
                 "sidebar-l button sidebar-r"
-                "sidebar-l footer sidebar-r";
+                "sidebar-l toast sidebar-r";
             text-align: center;
             grid-gap: 10px;
         }
@@ -69,6 +69,75 @@
         .output {
             text-align: right;
         }
+
+        #errors {
+            visibility: hidden;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            min-width: 150px;
+            margin-left: -125px;
+            position: fixed;
+            left: 50%;
+            bottom: 30px;
+            z-index: 1;
+            border-radius: 2px;
+            padding: 16px;
+        }
+
+        #errors.show {
+            visibility: visible;
+            -webkit-animation: fadein 0.5s, fadeout 0.5s 4s;
+            animation: fadein 0.5s, fadeout 0.5s 4s;
+        }
+
+        @-webkit-keyframes fadein {
+            from {
+                bottom: 0;
+                opacity: 0;
+            }
+
+            to {
+                bottom: 30px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadein {
+            from {
+                bottom: 0;
+                opacity: 0;
+            }
+
+            to {
+                bottom: 30px;
+                opacity: 1;
+            }
+        }
+
+        @-webkit-keyframes fadeout {
+            from {
+                bottom: 30px;
+                opacity: 1;
+            }
+
+            to {
+                bottom: 0;
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeout {
+            from {
+                bottom: 30px;
+                opacity: 1;
+            }
+
+            to {
+                bottom: 0;
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 
@@ -77,29 +146,57 @@
         <div class="sidebar-l"></div>
         <header>Flip Flop String Reversal</header>
         <section class="instructions">Instructions go here</section>
-        <textarea class="userinput" id="user-input" placeholder="Type your text here"
+        <textarea class="userinput" id="user-input" placeholder="Type your text here" maxlength="240"
             oninput="reverseText(this.value)"></textarea>
         <p class="output-label">See your reversed text here!</p>
         <section class="output" id="text-output"></section>
         <button onclick="resetButton()">Reset</button>
-        <footer></footer>
+        <div id="errors" class=""></div>
         <div class="sidebar-r"></div>
 
     </div>
 
 
     <script>
+        const outputField = document.getElementById("text-output");
+        const errorMessage = document.getElementById("errors");
+
         function reverseText(str) {
+            setTimeout(function () {
+                checkString(outputField)
+            }, 3000);
+
             let reversed = "";
             for (let char of str) {
                 reversed = char + reversed;
             }
-            document.getElementById("text-output").innerHTML = reversed;
+            outputField.innerHTML = reversed;
+
+            if (str.length > 239) {
+                errorMessage.innerHTML = "You may only enter 240 characters"
+                errorMessage.className = "show"
+                setTimeout(function () {
+                    errorMessage.classList.remove("show");
+                }, 4500)
+
+            }
         }
+
+        function checkString() {
+            if (outputField.innerHTML.length === 1) {
+                errorMessage.innerHTML = "You must type more than one character"
+                errorMessage.className = "show"
+                setTimeout(function () {
+                    errorMessage.classList.remove("show");
+                }, 4500)
+            }
+        }
+
         function resetButton() {
             document.getElementById("user-input").value = "";
-            document.getElementById("text-output").innerHTML = "";
+            outputField.innerHTML = "";
         }
+
     </script>
 </body>
 
