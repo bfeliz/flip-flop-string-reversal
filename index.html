@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flip Flop String Reversal</title>
+    <title>Flip Flop Text Reversal</title>
     <style>
         .sidebar-l {
             grid-area: sidebar-l;
@@ -40,6 +40,7 @@
 
         .grid-container {
             display: grid;
+            grid-template-columns: auto 50vw auto;
             grid-template-areas: "sidebar-l header sidebar-r"
                 "sidebar-l instructions sidebar-r"
                 "sidebar-l userinput sidebar-r"
@@ -53,10 +54,15 @@
         .userinput,
         .output {
             height: 140px;
-            width: auto;
+            width: 100%;
+            word-wrap: break-word;
             border: thin;
             border-style: solid;
             border-color: black;
+        }
+
+        .output {
+            text-align: right;
         }
     </style>
 </head>
@@ -66,8 +72,8 @@
         <div class="sidebar-l"></div>
         <header>Flip Flop String Reversal</header>
         <section class="instructions">Instructions go here</section>
-        <textarea class="userinput"></textarea>
-        <section class="output">User output goes here</section>
+        <textarea class="userinput" oninput="reverseText(this.value)"></textarea>
+        <section class="output" id="text-output">Your reversal goes here</section>
         <button>Reset</button>
         <footer></footer>
         <div class="sidebar-r"></div>
@@ -75,7 +81,15 @@
     </div>
 
 
-
+    <script>
+        function reverseText(str) {
+            let reversed = "";
+            for (let char of str) {
+                reversed = char + reversed;
+            }
+            document.getElementById("text-output").innerHTML = reversed;
+        }
+    </script>
 </body>
 
 </html>
