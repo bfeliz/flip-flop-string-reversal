@@ -22,6 +22,10 @@
             grid-area: userinput;
         }
 
+        .output-label {
+            grid-area: output-label;
+        }
+
         .output {
             grid-area: output;
         }
@@ -44,6 +48,7 @@
             grid-template-areas: "sidebar-l header sidebar-r"
                 "sidebar-l instructions sidebar-r"
                 "sidebar-l userinput sidebar-r"
+                "sidebar-l output-label sidebar-r"
                 "sidebar-l output sidebar-r"
                 "sidebar-l button sidebar-r"
                 "sidebar-l footer sidebar-r";
@@ -72,9 +77,11 @@
         <div class="sidebar-l"></div>
         <header>Flip Flop String Reversal</header>
         <section class="instructions">Instructions go here</section>
-        <textarea class="userinput" oninput="reverseText(this.value)"></textarea>
-        <section class="output" id="text-output">Your reversal goes here</section>
-        <button>Reset</button>
+        <textarea class="userinput" id="user-input" placeholder="Type your text here"
+            oninput="reverseText(this.value)"></textarea>
+        <p class="output-label">See your reversed text here!</p>
+        <section class="output" id="text-output"></section>
+        <button onclick="resetButton()">Reset</button>
         <footer></footer>
         <div class="sidebar-r"></div>
 
@@ -88,6 +95,10 @@
                 reversed = char + reversed;
             }
             document.getElementById("text-output").innerHTML = reversed;
+        }
+        function resetButton() {
+            document.getElementById("user-input").value = "";
+            document.getElementById("text-output").innerHTML = "";
         }
     </script>
 </body>
