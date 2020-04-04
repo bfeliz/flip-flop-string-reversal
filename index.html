@@ -5,9 +5,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flip Flop String Reversal</title>
+    <style>
+        .sidebar-l {
+            grid-area: sidebar-l;
+        }
+
+        header {
+            grid-area: header;
+        }
+
+        .instructions {
+            grid-area: instructions;
+        }
+
+        textarea {
+            grid-area: userinput;
+        }
+
+        .output {
+            grid-area: output;
+        }
+
+        button {
+            grid-area: button;
+        }
+
+        footer {
+            grid-area: footer;
+        }
+
+        .sidebar-r {
+            grid-area: sidebar-r;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-areas: "sidebar-l header sidebar-r"
+                "sidebar-l instructions sidebar-r"
+                "sidebar-l userinput sidebar-r"
+                "sidebar-l output sidebar-r"
+                "sidebar-l button sidebar-r"
+                "sidebar-l footer sidebar-r";
+            text-align: center;
+            grid-gap: 10px;
+        }
+
+        .userinput,
+        .output {
+            height: 140px;
+            width: auto;
+            border: thin;
+            border-style: solid;
+            border-color: black;
+        }
+    </style>
 </head>
 
 <body>
+    <div class="grid-container">
+        <div class="sidebar-l"></div>
+        <header>Flip Flop String Reversal</header>
+        <section class="instructions">Instructions go here</section>
+        <textarea class="userinput"></textarea>
+        <section class="output">User output goes here</section>
+        <button>Reset</button>
+        <footer></footer>
+        <div class="sidebar-r"></div>
+
+    </div>
+
+
 
 </body>
 
