@@ -214,7 +214,7 @@
         </header>
         <section class="instructions">
             <h2 class="subtitle">Ready to flip some words around?</h2>
-            <p class="instructions">Enter your text in the top blue box and watch it magically reverse itself in the
+            <p>Enter your text in the top blue box and watch it magically reverse itself in the
                 bottom green box!
             </p>
             <hr>
@@ -226,13 +226,15 @@
                 </ul>
             </span>
         </section>
+        <!-- maxlength to prevent entering more than 200 characters (error toast thrown as well in reverseText function), onkeydown to prevent user from hitting enter and exceeding predefined textarea height -->
         <textarea class="userinput" id="user-input" placeholder="Type your text here" maxlength="200"
-            oninput="reverseText(this.value)"></textarea>
+            onkeydown="return (event.keyCode!=13);" oninput="reverseText(this.value)"></textarea>
         <p class="label">Check out your reversed text below!</p>
         <section class="output" id="text-output" onclick="typeError()"></section>
         <br>
         <p class="label">Want to see some more magic? Click the reset button to start again.</p>
         <button onclick="resetButton()">Reset</button>
+        <!-- empty class will be filled and emptied by error toast functions -->
         <div id="errors" class=""></div>
 
     </div>
@@ -275,7 +277,6 @@
             if (outputField.innerHTML.length === 1) {
                 errorMessage.innerHTML = "Please type more than one character"
                 errorMessage.className = "show"
-                // removing error toast after 4.5 seconds
                 setTimeout(function () {
                     errorMessage.classList.remove("show");
                 }, 4500)
