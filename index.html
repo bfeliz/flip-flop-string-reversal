@@ -3,21 +3,26 @@
 
 <head>
     <meta charset="UTF-8">
+    <!-- added to assist with responsiveness  -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flip Flop Text Reversal</title>
+    <!-- all styling is done within these style tags -->
     <style>
+        /* defining universal styles */
         html,
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             font-size: 16px;
             width: 100%;
-            background-image: linear-gradient(to bottom right, #62BCE0, #8DEBB4);
+            height: 100vh;
+            background-image: linear-gradient(to bottom right, #62bce0, #8debb4);
             overflow-x: hidden;
         }
 
+        /* styling for inner container */
         .container {
             margin: 6% 15%;
-            background-color: #F9FFFF;
+            background-color: #f9ffff;
             text-align: center;
             -webkit-box-shadow: 0px 0px 23px -3px rgba(0, 0, 0, 0.27);
             -moz-box-shadow: 0px 0px 23px -3px rgba(0, 0, 0, 0.27);
@@ -31,75 +36,86 @@
         }
 
         .subtitle,
-        .instructions {
+        .instructions,
+        .label {
             padding: 0% 8%;
         }
 
         .usage-tips {
             text-align: left;
+            line-height: 140%;
         }
 
         textarea {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             font-size: 16px;
-            border-color: navy;
+            line-height: 140%;
         }
 
-        textarea:focus {
+        /* hiding browser preset blue focus outline */
+        textarea:focus,
+        button:focus {
             outline-style: none;
         }
 
+        /* standardizing input and output boxes */
         .userinput,
         .output {
             height: 140px;
             width: 50vw;
+            line-height: 140%;
             word-wrap: break-word;
-            border: thin;
             border-style: solid;
-            border-color: black;
             padding: 2%;
             border-radius: 3px;
+            overflow: hidden;
+            border-width: medium;
         }
 
         .userinput {
             background-color: #e8f9fc;
-            border-color: #62BCE0;
-            border-width: medium;
+            border-color: #62bce0;
         }
 
         .output {
             text-align: left;
             display: inline-block;
             background-color: #edfff4;
-            border-color: #8DEBB4;
-            border-width: medium;
+            border-color: #8debb4;
         }
 
         button {
             font-size: 16px;
             margin: 0% 0% 4%;
-            padding: 6px 12px;
+            padding: 8px 16px;
             border-radius: 3px;
-            /* background-image: linear-gradient(to bottom, #8debb4, #d6f0e0); */
-            -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.33);
-            -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.33);
-            box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.33);
+            background-image: linear-gradient(to bottom, #e8f9fc, #62bce0);
+            -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.29);
+            -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.29);
+            box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.29);
         }
 
-        button:focus {
-            outline-style: none;
+        /* slight increase to button shadow size on hover */
+        button:hover {
+            -webkit-box-shadow: 0px 0px 6px 3px rgba(198, 200, 204, 1);
+            -moz-box-shadow: 0px 0px 6px 3px rgba(198, 200, 204, 1);
+            box-shadow: 0px 0px 6px 3px rgba(198, 200, 204, 1);
         }
 
+        /* universal styling for error toasts */
         #errors {
             visibility: hidden;
-            background-color: #333;
+            background-color: #62bce0;
+            border-color: #4da6c9;
+            border-width: thin;
+            border-style: solid;
             color: #fff;
             text-align: center;
             min-width: 150px;
-            margin-left: -125px;
+            margin-left: -134px;
             position: fixed;
             left: 50%;
-            bottom: 30px;
+            bottom: 20px;
             z-index: 1;
             border-radius: 3px;
             padding: 16px;
@@ -111,6 +127,7 @@
             animation: fadein 0.5s, fadeout 0.5s 4s;
         }
 
+        /* animation keyframes for error toasts */
         @-webkit-keyframes fadein {
             from {
                 bottom: 0;
@@ -118,7 +135,7 @@
             }
 
             to {
-                bottom: 30px;
+                bottom: 20px;
                 opacity: 1;
             }
         }
@@ -130,14 +147,14 @@
             }
 
             to {
-                bottom: 30px;
+                bottom: 20px;
                 opacity: 1;
             }
         }
 
         @-webkit-keyframes fadeout {
             from {
-                bottom: 30px;
+                bottom: 20px;
                 opacity: 1;
             }
 
@@ -149,7 +166,7 @@
 
         @keyframes fadeout {
             from {
-                bottom: 30px;
+                bottom: 20px;
                 opacity: 1;
             }
 
@@ -159,13 +176,14 @@
             }
         }
 
-        @media screen and (max-width: 1065px) {
+        /* necessary styling changes at common screensize breakpoints */
+        @media screen and (max-width: 1200px) {
             .title {
                 font-size: 35px;
             }
         }
 
-        @media screen and (max-width: 750px) {
+        @media screen and (max-width: 900px) {
 
             .userinput,
             .output {
@@ -173,15 +191,21 @@
             }
         }
 
-        @media screen and (max-width: 430px) {
+        @media screen and (max-width: 600px) {
 
             .userinput,
             .output {
-                height: 300px;
+                height: 330px;
+            }
+
+            .container {
+                margin: 4%;
             }
         }
     </style>
 </head>
+
+<!-- General notes on some choices I made: I decided to keep the parameters simple to avoid user frustration at too many rules. I also decided to make the user input and output boxes slightly different colors to help users see at a glance where they should be entering text, instead of solely relying on the "top" and "bottom" descriptors. Same with the placeholder text in the input box and not in the output box, again to differentiate between the two boxes. I placed the two boxes on top of one another to avoid using the potentially more confusing "left" and "right" descriptors, as a mobile-first approach, and because I preferred the overall look more than a side by side version. I spread the instructions/descriptions out throughout the page to avoid a huge chunk of text at the start, which could make users think it was too complicated and give up before trying it. Finally, I chose the blue and green color scheme because they are typically pleasing to most people and are easy on the eyes, in my opinion.-->
 
 <body>
     <div class="container">
@@ -197,41 +221,48 @@
             <span class="usage-tips">
                 <p>There are only two guidelines:</p>
                 <ul>
-                    <li>You must enter more than one character (otherwise there is nothing to reverse!)</li>
+                    <li>You must enter more than one character to see your text in reverse.</li>
                     <li>Keep it short and sweet; use no more than 200 characters.</li>
                 </ul>
             </span>
         </section>
         <textarea class="userinput" id="user-input" placeholder="Type your text here" maxlength="200"
             oninput="reverseText(this.value)"></textarea>
-        <p>Check out your reversed text below!</p>
+        <p class="label">Check out your reversed text below!</p>
         <section class="output" id="text-output" onclick="typeError()"></section>
         <br>
-        <p>Want to see some more magic? Click the reset button to start again.</p>
+        <p class="label">Want to see some more magic? Click the reset button to start again.</p>
         <button onclick="resetButton()">Reset</button>
         <div id="errors" class=""></div>
 
     </div>
 
-
     <script>
+        // defining some variables for cleaner code in functions below
         const outputField = document.getElementById("text-output");
         const errorMessage = document.getElementById("errors");
+        const inputField = document.getElementById("user-input");
 
+        // function called on every character added to the input box, this shows the user their reversed text as they type
         function reverseText(str) {
+            // timer to run checkString function 3 seconds after letter input (pause set to allow user to type if they type slowly without immediately showing error)
             setTimeout(function () {
                 checkString(outputField)
             }, 3000);
 
+            // looping over text in input string, adding each character one by one to the beginning of the output string to reverse the entries
             let reversed = "";
             for (let char of str) {
                 reversed = char + reversed;
             }
+            // displaying the reversed string to the output box
             outputField.innerHTML = reversed;
 
+            // checking as user enters each letter if they have passed the 200 character rule, showing error toast if they have
             if (str.length > 199) {
                 errorMessage.innerHTML = "You may only enter 200 characters"
                 errorMessage.className = "show"
+                // removing error toast after 4.5 seconds
                 setTimeout(function () {
                     errorMessage.classList.remove("show");
                 }, 4500)
@@ -239,26 +270,30 @@
             }
         }
 
+        // checking to ensure user has not stopped at one character, showing error toast if they have
         function checkString() {
             if (outputField.innerHTML.length === 1) {
-                errorMessage.innerHTML = "You must type more than one character"
+                errorMessage.innerHTML = "Please type more than one character"
                 errorMessage.className = "show"
+                // removing error toast after 4.5 seconds
                 setTimeout(function () {
                     errorMessage.classList.remove("show");
                 }, 4500)
             }
         }
 
+        // function to show error toast if user attempts to click on output box to enter text and guide them toward input box
         function typeError() {
-            errorMessage.innerHTML = "Type your text in the top blue box"
+            errorMessage.innerHTML = "Enter your text in the top blue box"
             errorMessage.className = "show"
             setTimeout(function () {
                 errorMessage.classList.remove("show");
             }, 4500)
         }
 
+        // function to reset both boxes, triggered on click of reset button
         function resetButton() {
-            document.getElementById("user-input").value = "";
+            inputField.value = "";
             outputField.innerHTML = "";
         }
 
