@@ -1,4 +1,4 @@
-# Flip Flop String Reversal
+# Flip Flop Text Reversal
 
 ## Specifications
 
@@ -20,3 +20,26 @@
 *   There can be a submit button, or the output text can generate as user inputs
 *   There must be a reset button so that user can enter more text as desired
 *   Any parameters can be allowed or disallowed; if user does not follow parameters error messages should guide them forward
+
+## Description
+
+Quick application to reverse a string with an aesthetically pleasing user interface.
+
+## [Try it yourself!](https://bfeliz.github.io/flip-flop-string-reversal/)
+
+## Getting Started
+
+This is a simple application that runs right in the browser, no installation or downloads needed.
+
+## Built With:
+
+JavaScript - programming language <br>
+
+## Author:
+
+Brittany Fortner <br>
+See commit history [here](https://github.com/bfeliz/flip-flop-string-reversal/graphs/contributors).
+
+## Planned Updates
+
+There are no plans to further update this application at this time.
