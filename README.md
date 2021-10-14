@@ -16,8 +16,7 @@ JavaScript - programming language <br>
 
 ## Author:
 
-Brittany Fortner <br>
-See commit history [here](https://github.com/bfeliz/flip-flop-string-reversal/graphs/contributors).
+Brittany Crosthwait <br>
 
 ## Planned Updates
 

@@ -246,7 +246,7 @@
         const inputField = document.getElementById("user-input");
 
         // function called on every character added to the input box, this shows the user their reversed text as they type
-        function reverseText(str) {
+        const reverseText = (str) => {
             // timer to run checkString function 3 seconds after letter input (pause set to allow user to type if they type slowly without immediately showing error)
             setTimeout(function () {
                 checkString(outputField)
@@ -273,7 +273,7 @@
         }
 
         // checking to ensure user has not stopped at one character, showing error toast if they have
-        function checkString() {
+        const checkString = () => {
             if (outputField.innerHTML.length === 1) {
                 errorMessage.innerHTML = "Please type more than one character"
                 errorMessage.className = "show"
@@ -284,7 +284,7 @@
         }
 
         // function to show error toast if user attempts to click on output box to enter text and guide them toward input box
-        function typeError() {
+        const typeError = () => {
             errorMessage.innerHTML = "Enter your text in the top blue box"
             errorMessage.className = "show"
             setTimeout(function () {
@@ -293,7 +293,7 @@
         }
 
         // function to reset both boxes, triggered on click of reset button
-        function resetButton() {
+        const resetButton = () => {
             inputField.value = "";
             outputField.innerHTML = "";
         }
